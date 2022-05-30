@@ -1,4 +1,4 @@
-const {internalError} = require('../utils/library/statusCode');
+const {internalError} = require('../utils/statusCode');
 
 module.exports = (error, _request, resolve, _next) => {
   if (error.status) {

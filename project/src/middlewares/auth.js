@@ -1,27 +1,21 @@
-const authService = require('../services/authServices');
-const {unauthorized, serverError} = require('../utils/library/statusCode');
+const {verifyToken} = require('../api/authService');
+const {unauthorized} = require('../utils/statusCode');
+const {errorConstructor} = require('../utils/errorConstructor');
 
-module.exports = (req, res, next) => {
+module.exports = async (req, _res, next) => {
   try {
     const {authorization} = req.headers;
 
     if (!authorization) {
-      return res.status(unauthorized)
-          .json({error: {message: 'Token not found'}});
+      throw errorConstructor(unauthorized, 'Token not found');
     }
 
-    const user = authService.verifyToken(authorization);
-
-    if (!user) {
-      return res.status(unauthorized)
-          .json({error: {message: 'Expired or invalid token'}});
-    }
-
+    const user = verifyToken(authorization);
+    if (!user) throw errorConstructor(unauthorized, 'Expired or invalid token');
     req.user = user;
     next();
   } catch (error) {
-    console.log('Error, auth:', error);
-    return res.status(serverError)
-        .json({error: {message: 'Internal Server Error'}});
+    console.log('FALHA AUTH');
+    next(error);
   }
 };
