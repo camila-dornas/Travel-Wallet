@@ -5,9 +5,6 @@ const errorConstructor = require('../utils/errorConstructor');
 const {generateToken} = require('../api/authService');
 const {badRequest, conflict} = require('../utils/statusCode');
 
-
-// criar usuario de acordo com a validação do schema
-
 const userSchema = Joi.object({
   name: Joi.string().max(255).required(),
   email: Joi.string().max(255).email().required(),
