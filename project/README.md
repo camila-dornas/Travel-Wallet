@@ -22,7 +22,7 @@
 - [ ] Deletar;
 
 #### 🗒️ Testes:
-- [ ] Unitários;
+- [x] Unitários;
 
 #### 🔝 Bônus:
 - [x] Docker;
