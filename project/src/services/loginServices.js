@@ -3,6 +3,7 @@ const md5 = require('md5');
 const Joi = require('@hapi/joi');
 const errorConstructor = require('../utils/errorConstructor');
 const {badRequest, notFound} = require('../utils/statusCode');
+const {getWallet} = require('../services/walletServices');
 const {generateToken} = require('../api/authService');
 
 const loginSchema = Joi.object({
@@ -25,8 +26,9 @@ const loginService = async (requestUser) => {
     throw errorConstructor(notFound, 'e-mail or password is incorrect');
   }
   const {name, email, id} = foundUser;
+  const wallet = await getWallet(id);
   const token = generateToken({name, email, id});
-  return {token, name, email, id};
+  return {token, name, email, id, wallet};
 };
 
 module.exports = {
