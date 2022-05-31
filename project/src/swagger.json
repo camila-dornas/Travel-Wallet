@@ -1,0 +1,155 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Convert Wallet",
+    "description": "Esse app tem como objetivo converter moedas de um tipo específico para outro tipo especifico.",
+    "termsOfService": "http://localhost:3000/terms",
+    "contact": {
+      "name": "Camila Dornas",
+      "email": "camilaluizadornas@gmail.com"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/v1",
+      "description": "Api teste"
+    }
+  ],
+  "paths": {
+    "/wallet/{id}/convert": {
+      "post": {
+        "summary": "wallet",
+        "description": "Converção de moedas",
+        "tags": ["wallet"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/wallet"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/wallet"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+    "/wallet/{id}": {
+      "get": {
+        "summary": "Acesso da carteira pelo id",
+        "description": "Acessar a carteira pelo id",
+        "tags": ["wallet"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id da conversão",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "put": {
+        "summary": "Atualização da carteira",
+        "description": "Atualização da carteira",
+        "tags": ["wallet"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id da carteira",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/wallet"
+                }
+              }
+            }
+          },
+        "responses": {
+          "200": {
+            "description": "Sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/wallet"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+  "components": {
+    "schemas": {
+      "wallet": {
+        "type": "object",
+        "properties": {
+          "from": {
+            "type": "string",
+            "description": "Moeda de origem",
+            "example": "USD"
+          },
+          "to": {
+            "type": "string",
+            "description": "Moeda de destino",
+            "example": "BRL"
+          },
+          "value": {
+            "type": "number",
+            "description": "Valor da moeda de origem",
+            "example": "100"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
+}
