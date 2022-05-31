@@ -6,6 +6,7 @@
 
 ---
 ## Sobre do projeto
+*<p> Esse tipo de aplicação foi escolhido pela familiaridade da estruturaçã do projeto e por me sentir mais a vontade em fazer uma aplicação que acredito que pode ser útil, futuramente. Foi desenvolvido em JavaScript para ganhar tempo, pois na linguagem TypeScript ainda estou em evolução no aprendizado.</p>*
 
 ### Features
 #### 👤 Usuário:
